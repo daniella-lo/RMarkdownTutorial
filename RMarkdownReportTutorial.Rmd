@@ -1,0 +1,19 @@
+---
+title: 'Salmon smolts: answers to all remaining questions'
+author: 
+#csl: canadian-journal-of-fisheries-and-aquatic-sciences.csl
+header-includes:
+- \usepackage{lineno}
+- \linenumbers
+- \usepackage{setspace}\doublespacing
+- \setlength{\parskip}{1em}
+output:
+  pdf_document:
+    fig_caption: yes
+    keep_tex: yes
+    latex_engine: xelatex
+#bibliography: References.bib
+---
+
+#Abstract
+Salmon smolts are really cool, obviously. However, we also lack a full understanding of why they do what they do. Here we fill in that knowledge gap with some data, which we manipulate, analyze, and display in R markdown. 
