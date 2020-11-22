@@ -1,0 +1,89 @@
+---
+title: "Rmarkdown Overview"
+output: ioslides_presentation
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## R Markdown
+
+What is it?
+
+![Allison Horst](Markdown_band.png){width=500px, height=500px}
+
+
+## Tools we are using
+- R
+- RMarkdown
+- YAML
+- Knitr
+- Pandoc
+- LaTex
+
+
+## Tools we are using
+- **R**
+- **RMarkdown**
+- **YAML**
+- Knitr
+- Pandoc
+- LaTex
+
+
+## Rmarkdown
+
+**Markdown (.md extension)**
+
+- Markup language independant of R
+
+- Plain text formatting syntax that can convert to other formats
+
+
+**Rmarkdown (.Rmd extension)**
+
+- R package (rmarkdown)
+
+- Extension of markdown syntax that enables embedded R code to be executed
+
+- Converts .Rmd files into many formats (**rmarkdown::render**)
+
+##YAML 
+- **Y**et **A**nother **M**arkup **L**anguage vs. YAML Ain't Markup Language?
+- Metadata at the head of .Rmd files
+- Determines format of the final document
+
+##Knitr
+
+- R package (knitr)
+- Takes plain text doc with embedded code, executes the code, and "knits" results back into document
+- The "engine" that integrates R code into different outputs (e.g., reproducible reports)
+
+
+##Pandoc
+- Command line tool for converting documents independent from R
+- Comes bundled with R Studio
+- The engine for rmarkdown::render
+
+##Process
+
+(1) A raw .Rmd markup file (text + R code etc.)
+
+(2) knitr::knit is called to execute code in .Rmd
+
+(3) pandoc is called by rmarkdown::render to convert into a new output document
+
+(4) YAML metadata passes options to guide building process and output format
+
+##LaTex
+
+- Standalone software for document preparation (TeX typesetting language)
+
+- Part of pipeline for translating .Rmd files into PDF format
+
+
+
+
+
