@@ -84,6 +84,51 @@ What is it?
 - Part of pipeline for translating .Rmd files into PDF format
 
 
+##Writing in Rmarkdown
+
+Why?
+
+
+##Project Organization and Reproducibility
+
+
+
+Writing is in same directory as all other parts of project
+
+Rproject
+
+|
+|
+
++ --- Analysis
+
+|
+|
+
++ --- Figures
+
+|
+|
+
++ --- Manuscript
+
+
+##Project Organization and Reproducibility
+
+Version Control with Git and GitHub
+
+![](Files.png){width=650px, height=450px}
+
+##Control of Formatting
+![](MS_word.png){width=500px, height=300px}
+
+Less time cursing at MS Word
+
+
+
+
+##Looks Nice
+![](Pooh_LaTex.png){width=450px, height=500px}
 
 
 

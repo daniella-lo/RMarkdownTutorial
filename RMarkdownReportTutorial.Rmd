@@ -1,6 +1,6 @@
 ---
 title: 'Salmon smolts: answers to all remaining questions'
-author: 
+author: Daniella and Sean
 #csl: canadian-journal-of-fisheries-and-aquatic-sciences.csl
 header-includes:
 - \usepackage{lineno}
@@ -16,4 +16,7 @@ output:
 ---
 
 #Abstract
-Salmon smolts are really cool, obviously. However, we also lack a full understanding of why they do what they do. Here we fill in that knowledge gap with some data, which we manipulate, analyze, and display in R markdown. 
+Salmon smolts are really cool, obviously. However, we also lack a full understanding of why they do what they do. Here we fill in that knowledge gap with some data, which we manipulate, analyze, and display in R markdown. Buckle up...
+
+
+#Introduction

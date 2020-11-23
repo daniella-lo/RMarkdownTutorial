@@ -1,0 +1,90 @@
+---
+title: "Rmarkdown Workshop Info"
+output: pdf_document
+---
+
+#Installation and Setup
+
+You will need R and RStudio installed. If you want to generate PDF outputs, you also need a LaTeX installation. Best options are MiKTeX or TinyTeX. TinyTeX seems to be more widely recommended for what we are doing. It can be installed following instructions in the link below.
+
+https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html
+
+MiKTeX can be downloaded for Windows or Mac here (https://miktex.org/). If you have a mac, there are sometimes additional install steps that need to be done in your terminal. Follow these directions here (https://miktex.org/howto/modify-path).
+
+Most of the other tools we will use live in the rmarkdown package. You don't need to explicitly install or load the package as it is already bundled with R Studio (as is Pandocs, used for creating PDF and .docx outputs). 
+
+To create an R markdown file from RStudio, click *File* > *New File* > *R Markdown*. When prompted by the new file wizard, add a title and an author for the document and select an output format. Best to start with HTML as your output format (this can be changed at any time). Click *OK*. You will now be in your new .Rmd file. 
+
+
+#Helpful Links
+
+## Rmarkdown Syntax 
+
+https://rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf
+
+https://rmarkdown.rstudio.com/authoring_basics.html
+
+https://bookdown.org/yihui/rmarkdown/markdown-syntax.html
+
+https://rpruim.github.io/s341/S19/from-class/MathinRmd.html
+
+## LaTex Syntax
+
+http://www.docs.is.ed.ac.uk/skills/documents/3722/3722-2014.pdf
+
+http://wch.github.io/latexsheet/
+
+
+## Writing with R markdown
+
+###References and Styles
+Add citations to reports and control citation format
+
+https://bookdown.org/yihui/rmarkdown-cookbook/bibliography.html
+
+GitHub repository of .csl files for different citation styles
+
+https://github.com/citation-style-language/styles
+
+Tables
+
+https://rmarkdown.rstudio.com/lesson-7.html
+
+https://kbroman.org/knitr_knutshell/pages/figs_tables.html
+
+rticles package for some specific journal formats
+
+https://github.com/rstudio/rticles
+
+
+## Presentations and helpful references
+
+https://oliviergimenez.github.io/intro_rmarkdown/#1
+
+
+## Additional Tools
+
+###Bookdown 
+R package for writing articles and books from Rmarkdown
+
+https://bookdown.org/
+
+
+###R Shiny
+Make interactive documents
+
+https://beta.rstudioconnect.com/content/2671/Combining-Shiny-R-Markdown.html
+
+###ReDOC
+Makes documents 'reversible from MS word to .Rmd. Current release might be unstable
+
+https://noamross.github.io/redoc/
+
+
+
+
+
+
+
+
+
