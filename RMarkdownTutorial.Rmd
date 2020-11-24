@@ -6,6 +6,7 @@ output:
   html_document: 
                  # for word doc output, change this to word_document
                  # for pdf output, change this to pdf_output
+    bibliography: packages.bib
     toc: true # table of contents
     toc_float: false #floats at the side of the html
     toc_collapsed: false
@@ -17,7 +18,7 @@ output:
 theme: lumen # a nice crisp theme
 ---
 
-This is an R Markdown document (`.Rmd`). Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown I recommend *Bookdown* <https://bookdown.org/yihui/rmarkdown/markdown-syntax.html>.  
+This is an R Markdown document (`.Rmd`). Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown I recommend *Bookdown* by @bookdown2016 <https://bookdown.org/yihui/rmarkdown/markdown-syntax.html>.  
 
 Above this text there is some code surrounded by "---" which sets up the document. There, you can set defaults and formatting for the document output. I've set it to html, but it can be changed to pdf_document, word_document
 
@@ -27,6 +28,7 @@ Text (here) is written in Pandoc's Markdown syntax. Here you can document inform
 
 ## In-line text
 + When you end a paragraph, write 2 spaces. Otherwise, all your text will be in one big string. 
++ Leave a blank line between text paragraphs and in-line foramtting like equations, lists and tables. It makes your code look neater and ensures R reads formatting correctly
 + Italic text if surrounded by underscores or asterisks, e.g., _text_ or *text*  
 + Bold text is produced using a pair of double asterisks (**text**)  
 + A pair of tildes (~) turn text to a subscript (e.g., H~3~PO~4~ renders H3PO4)  
@@ -34,6 +36,7 @@ Text (here) is written in Pandoc's Markdown syntax. Here you can document inform
 
 ## Lists
 Unordered list items (like above) start with *, -, or +, and you can nest one list within another list by indenting the sub-list  
+
 - one item
 - one item
 - one item
@@ -59,9 +62,11 @@ Ordered list items start with numbers (you can also nest lists within lists), e.
 
 ## Equations
 Inline LaTeX equations can be written in a pair of dollar signs using the LaTeX syntax:  
+
 $f(k) = {n \choose k} p^{k} (1-p)^{n-k}$  
 
 You can also use math environments inside dollar signs like this cool matrix:  
+
 $$\begin{array}{ccc}
 x_{11} & x_{12} & x_{13}\\
 x_{21} & x_{22} & x_{23}
@@ -95,7 +100,7 @@ library(kableExtra) # for basic tables
 ```
 
 ## Data
-Here, we will import a dummy dataset (mine, lol), 
+Here, we will import a dummy dataset (mine, lol), clean it up a bit, and show a quick summary of the data. Useful for first step data validation in a pinch. 
 ```{r datasets, warning = FALSE}
 df <- read.csv("salpref_smoltdata_20102020.csv")
 # Rmarkdown is handy to annotate any changes you make to datasets. I like it because a broken script will not knit so youre forced to deal with problems as they arrise. 
@@ -125,9 +130,7 @@ df$pref <- factor(df$pref, levels = c("Freshwater", "Brackish", "Saltwater"))
 
 ## Figures
 
-I've hidden the code to write these figures - check out the rmd file to see how to make em.  
-
-```{r Figures, fig.cap= "Figure 1. Fish Condition by Outmigration Week ", echo = FALSE, message = FALSE, include = TRUE, out.width= '50%',  fig.show ='hold', warning = FALSE}
+```{r Figures, fig.cap= "Figure 1. Fish Condition by Outmigration Week ", message = FALSE, include = TRUE, out.width= '50%',  fig.show ='hold', warning = FALSE}
 # fig.cap adds a figure caption just to the html file after you knit it
 # out.width scales your figures, if you are doing a multipanel just to present in the html, make it 50% so that its 2 columns. This wont save the figure, just show it. To save a multiplot, use the code below
 
@@ -223,7 +226,7 @@ If you want to include a graphic or figure that is not generated from R code, li
 ```
 
 ## Tables
-I've hidden the code to write these tables - check out the rmd file to see how to make em.  
+For more table formatting options, chech out  <https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html>  
 
 ### Basic
 ```{r Tables, message = FALSE, include = TRUE, results = 'asis'}
@@ -270,4 +273,10 @@ tab2 %>% # your dataset
   as_kable()  %>% 
   kable_styling(bootstrap_options = c("striped", "bordered","hover", "condensed", "responsive"), position = "left", full_width = FALSE, fixed_thead = TRUE) # just some nice formatting, you can play around with these
 
+```
+
+# Citing R packages
+Here's an easy chunk that will create a bib file of all the packages you have loaded for this R script. This is super useful for your methods when you're running analysis and making figures. This will create a new file "packages.bib" that you can import to your citation manager (Mendeley) or use as a bibliography directly in markdown when writing a manuscript.  
+```{r packages}
+knitr::write_bib(c(.packages(), "bookdown"), "packages.bib")
 ```
