@@ -3,33 +3,78 @@ title: "Rmarkdown is pretty dang rad" # a fun title!
 author: "Nicolita the Snail" # a fun name!
 date: "`r format(Sys.time(), '%d %B %Y - %H:%M')`" # automatically inputs the date and time - neato
 output: 
-  html_document: # for word doc output, change this to word_document
+  html_document: 
+                 # for word doc output, change this to word_document
                  # for pdf output, change this to pdf_output
+    bibliography: packages.bib
     toc: true # table of contents
     toc_float: false #floats at the side of the html
     toc_collapsed: false
     toc_depth: 6 # can have up to 6 levels in the table of contents
     number_sections: true # numbers the sections
+    fig_width: 7 # set journal/preference standard figure dimensions
+    fig_height: 6
+    fig_caption: true # default to include fig captions
 theme: lumen # a nice crisp theme
 ---
 
-This is the basic rmakrdown template I use each time. The html output is nice and interactive, and the pdf is clean. Remember to write 2 spaces after a paragraph or sentance to start a new line.    
+This is an R Markdown document (`.Rmd`). Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown I recommend *Bookdown* by @bookdown2016 <https://bookdown.org/yihui/rmarkdown/markdown-syntax.html>.  
 
-If you want more whitespace between paragraphs or figures in the html output, use this code between sections:  
+Above this text there is some code surrounded by "---" which sets up the document. There, you can set defaults and formatting for the document output. I've set it to html, but it can be changed to pdf_document, word_document
 
-<div style="margin-bottom:50px;">
-</div>
+Text (here) is written in Pandoc's Markdown syntax. Here you can document information about your datasets, references, notes, ideas, explanations, heck, even write the body of your manuscript! It can all be formatted nicely in-line. Here are some helpful formatting tips from bookdown:  
 
-# This is a big ole heading!
-## This is a slightly smaller heading!
-### Even smaller heading!
-#### Does it keep going?
-##### OMG how far does it go?
-###### Its headings all the way down!!!
+# Formatting
 
-<div style="margin-bottom:50px;">
-</div>
+## In-line text
++ When you end a paragraph, write 2 spaces. Otherwise, all your text will be in one big string. 
++ Leave a blank line between text paragraphs and in-line foramtting like equations, lists and tables. It makes your code look neater and ensures R reads formatting correctly
++ Italic text if surrounded by underscores or asterisks, e.g., _text_ or *text*  
++ Bold text is produced using a pair of double asterisks (**text**)  
++ A pair of tildes (~) turn text to a subscript (e.g., H~3~PO~4~ renders H3PO4)  
++ A pair of carets (^) produce a superscript (e.g., Cu^2+^ renders Cu2+)  
 
+## Lists
+Unordered list items (like above) start with *, -, or +, and you can nest one list within another list by indenting the sub-list  
+
+- one item
+- one item
+- one item
+    - one more item
+    - one more item
+    - one more item
+
+Ordered list items start with numbers (you can also nest lists within lists), e.g.,  
+
+1. the first item
+2. the second item
+3. the third item
+    - one unordered item
+    - one unordered item
+
+
+## Headings
+### This is a slightly smaller heading!
+#### Even smaller heading!
+##### Does it keep going?
+###### OMG how far does it go?
+####### Its headings all the way down!!!
+
+## Equations
+Inline LaTeX equations can be written in a pair of dollar signs using the LaTeX syntax:  
+
+$f(k) = {n \choose k} p^{k} (1-p)^{n-k}$  
+
+You can also use math environments inside dollar signs like this cool matrix:  
+
+$$\begin{array}{ccc}
+x_{11} & x_{12} & x_{13}\\
+x_{21} & x_{22} & x_{23}
+\end{array}$$  
+
+
+# Chunks
+Chunks are where the magic happens. Ie. where you import data, mess with it, code, calculate, make figures, etc. You can insert an R code chunk either using the RStudio toolbar (the Insert button) or the keyboard shortcut Ctrl + Alt + I (Cmd + Option + I on macOS).  
 ```{r setup, echo = FALSE}
 # sets default to echo= TRUE, which will show your code chunks in the html output
 # as a bit of irony, putting echo = FALSE in the curly brackets above will hide this code chunk from the html output. Do this for any coding that you don't need to show your audience. 
@@ -53,10 +98,9 @@ library(kableExtra) # for basic tables
 
 # warning = FALSE hides the warnings from the html output
 ```
-<div style="margin-bottom:50px;">
-</div>
 
 ## Data
+Here, we will import a dummy dataset (mine, lol), clean it up a bit, and show a quick summary of the data. Useful for first step data validation in a pinch. 
 ```{r datasets, warning = FALSE}
 df <- read.csv("salpref_smoltdata_20102020.csv")
 # Rmarkdown is handy to annotate any changes you make to datasets. I like it because a broken script will not knit so youre forced to deal with problems as they arrise. 
@@ -83,11 +127,10 @@ df <- df %>%
 # order salinity preference
 df$pref <- factor(df$pref, levels = c("Freshwater", "Brackish", "Saltwater"))
 ```
-<div style="margin-bottom:50px;">
-</div>
 
 ## Figures
-```{r Figures, fig.cap= "Figure 1. Fish Condition by Outmigration Week ", echo = FALSE, message = FALSE, include = TRUE, out.width= '50%',  fig.show ='hold', warning = FALSE}
+
+```{r Figures, fig.cap= "Figure 1. Fish Condition by Outmigration Week ", message = FALSE, include = TRUE, out.width= '50%',  fig.show ='hold', warning = FALSE}
 # fig.cap adds a figure caption just to the html file after you knit it
 # out.width scales your figures, if you are doing a multipanel just to present in the html, make it 50% so that its 2 columns. This wont save the figure, just show it. To save a multiplot, use the code below
 
@@ -174,16 +217,19 @@ f4 <- ggarrange(f2, f3, f1, ncol=3,nrow=1) #specify number of rows and colums
 
 ggsave("multiplot.jpeg",plot=f4,units="in",height=4,width=13,dpi=800)
 ```
-<div style="margin-bottom:50px;">
-</div>
+
+If you want to include a graphic or figure that is not generated from R code, like one you made in Inkscape after Colin's rad workshop, you may use the knitr::include_graphics() function. Just add in the path or url to your image, and remove the hashtag comment in the chunk below. Here's a cute goat gif in the meantime...  
+
+![](https://media.giphy.com/media/TGakgWdFTT1Sg/giphy.gif)
+```{r, echo = FALSE, message = FALSE, include = TRUE, out.width='25%', fig.align='center', fig.cap='...'}
+#knitr::include_graphics('images/hex-rmarkdown.png')
+```
 
 ## Tables
-
-<div style="margin-bottom:50px;">
-</div>
+For more table formatting options, chech out  <https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html>  
 
 ### Basic
-```{r Tables, echo = FALSE, message = FALSE, include = TRUE, results = 'asis'}
+```{r Tables, message = FALSE, include = TRUE, results = 'asis'}
 #make sure results = 'asis' is there
 
 # use dplyr to group by week, spread by fish behaviour (exploratory or not), and count the number of active fish in each week
@@ -202,11 +248,9 @@ kable(tab1) %>%
   kable_styling(bootstrap_options = c("striped", "bordered","hover", "condensed", "responsive"), position = "left", full_width = FALSE, fixed_thead = TRUE) # just some nice formatting, you can play around with these
 
 ```
-<div style="margin-bottom:50px;">
-</div>
 
 ### Summary
-```{r Summary Stats Tables, echo = FALSE, message = FALSE, include = TRUE, results = 'asis'}
+```{r Summary Stats Tables, message = FALSE, include = TRUE, results = 'asis'}
 #make sure results = 'asis' is there
 
 # select the variables from your dataset that you want to include in your table
@@ -229,4 +273,10 @@ tab2 %>% # your dataset
   as_kable()  %>% 
   kable_styling(bootstrap_options = c("striped", "bordered","hover", "condensed", "responsive"), position = "left", full_width = FALSE, fixed_thead = TRUE) # just some nice formatting, you can play around with these
 
+```
+
+# Citing R packages
+Here's an easy chunk that will create a bib file of all the packages you have loaded for this R script. This is super useful for your methods when you're running analysis and making figures. This will create a new file "packages.bib" that you can import to your citation manager (Mendeley) or use as a bibliography directly in markdown when writing a manuscript.  
+```{r packages}
+knitr::write_bib(c(.packages(), "bookdown"), "packages.bib")
 ```
