@@ -12,7 +12,7 @@ output:
     fig_caption: yes
     keep_tex: yes
     latex_engine: xelatex
-#bibliography: References.bib
+bibliography: References.bib
 ---
 
 #Abstract
@@ -20,3 +20,21 @@ Salmon smolts are really cool, obviously. However, we also lack a full understan
 
 
 #Introduction
+We will start out broad and reference some important contributions to the literature. For example, you can reference a paper at the end of a sentence like this [@Naman2014]. Alternatively, you may want to refer to a specific study in the text. For example, @LoScerbo2020 is Daniella's recent paper - not about salmon, but still looks really cool. To cite multiple references, separate them with a semi-colon [@Bailey2020; @LoScerbo2020].
+
+#Methods
+If you are doing anything mathy, writing in Rmarkdown is great. You can either use markdown or LaTeX syntax for equations.
+Simple math is easy in markdown - just stick it between two dollar signs. You can mix LaTeX syntax in as well for more complexity.
+
+$E = MC^2$
+
+You can also write maths with LaTeX directly. This is handy if you want equations to be auto-numbered. Below is Bayes' theorem as LaTeX. 
+
+\begin{equation}
+P(A \mid B) = \frac{P(B \mid A) \, P(A)}{P(B)}
+\end{equation}
+
+
+
+#References
+<div id="refs"></div>
