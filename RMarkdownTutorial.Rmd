@@ -17,7 +17,7 @@ output:
 theme: lumen # a nice crisp theme
 ---
 
-This is an R Markdown document (`.Rmd`). Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown I recommend *Bookdown* <https://bookdown.org/yihui/rmarkdown/markdown-syntax.html> [@bookdown2016].  
+This is an R Markdown document (`.Rmd`). Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown I recommend *Bookdown* <https://bookdown.org/yihui/rmarkdown/markdown-syntax.html>.  
 
 Above this text there is some code surrounded by "---" which sets up the document. There, you can set defaults and formatting for the document output. I've set it to html, but it can be changed to pdf_document, word_document
 
@@ -32,11 +32,8 @@ Text (here) is written in Pandoc's Markdown syntax. Here you can document inform
 + A pair of tildes (~) turn text to a subscript (e.g., H~3~PO~4~ renders H3PO4)  
 + A pair of carets (^) produce a superscript (e.g., Cu^2+^ renders Cu2+)  
 
-<div style="margin-bottom:50px;">
-</div>
-
 ## Lists
-Unordered list items start with *, -, or +, and you can nest one list within another list by indenting the sub-list, e.g.,  
+Unordered list items (like above) start with *, -, or +, and you can nest one list within another list by indenting the sub-list  
 - one item
 - one item
 - one item
@@ -59,9 +56,6 @@ Ordered list items start with numbers (you can also nest lists within lists), e.
 ##### Does it keep going?
 ###### OMG how far does it go?
 ####### Its headings all the way down!!!
-
-<div style="margin-bottom:50px;">
-</div>
 
 ## Equations
 Inline LaTeX equations can be written in a pair of dollar signs using the LaTeX syntax:  
@@ -99,8 +93,6 @@ library(kableExtra) # for basic tables
 
 # warning = FALSE hides the warnings from the html output
 ```
-<div style="margin-bottom:50px;">
-</div>
 
 ## Data
 Here, we will import a dummy dataset (mine, lol), 
@@ -130,8 +122,6 @@ df <- df %>%
 # order salinity preference
 df$pref <- factor(df$pref, levels = c("Freshwater", "Brackish", "Saltwater"))
 ```
-<div style="margin-bottom:50px;">
-</div>
 
 ## Figures
 
@@ -236,7 +226,7 @@ If you want to include a graphic or figure that is not generated from R code, li
 I've hidden the code to write these tables - check out the rmd file to see how to make em.  
 
 ### Basic
-```{r Tables, echo = FALSE, message = FALSE, include = TRUE, results = 'asis'}
+```{r Tables, message = FALSE, include = TRUE, results = 'asis'}
 #make sure results = 'asis' is there
 
 # use dplyr to group by week, spread by fish behaviour (exploratory or not), and count the number of active fish in each week
@@ -255,11 +245,9 @@ kable(tab1) %>%
   kable_styling(bootstrap_options = c("striped", "bordered","hover", "condensed", "responsive"), position = "left", full_width = FALSE, fixed_thead = TRUE) # just some nice formatting, you can play around with these
 
 ```
-<div style="margin-bottom:50px;">
-</div>
 
 ### Summary
-```{r Summary Stats Tables, echo = FALSE, message = FALSE, include = TRUE, results = 'asis'}
+```{r Summary Stats Tables, message = FALSE, include = TRUE, results = 'asis'}
 #make sure results = 'asis' is there
 
 # select the variables from your dataset that you want to include in your table
