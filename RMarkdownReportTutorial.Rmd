@@ -1,17 +1,17 @@
 ---
 title: 'Salmon smolts: answers to all remaining questions'
 author: Daniella and Sean
-#csl: canadian-journal-of-fisheries-and-aquatic-sciences.csl
 header-includes:
-- \usepackage{lineno}
-- \linenumbers
+- \usepackage{lineno}\linenumbers
 - \usepackage{setspace}\doublespacing
 - \setlength{\parskip}{1em}
 output:
   pdf_document:
-    fig_caption: yes
+    fig_height: 2
+    fig_width: 2
     keep_tex: yes
-    latex_engine: xelatex ##LateX engine
+    latex_engine: xelatex 
+csl: canadian-journal-of-fisheries-and-aquatic-sciences.csl
 bibliography: References.bib
 ---
 
@@ -35,9 +35,18 @@ P(A \mid B) = \frac{P(B \mid A) \, P(A)}{P(B)}
 \end{equation}
 
 #Figures
+<<<<<<< HEAD
 This figure is pretty lit.  
 
 ![Figure 1.](yourfirstfig.jpeg)
+=======
+
+
+
+Let's add the multi-plot figure from Daniella's analysis. Note that the file is in the same directory as the manuscript - this means that if we update the figure in the original script, it automatically updates here. 
+
+![Write a nice caption here.](multiplot.jpeg)
+>>>>>>> 879abec0be75495af3f4c5dee6c1dfb0c1ab44fc
 
 #References
 <div id="refs"></div>
