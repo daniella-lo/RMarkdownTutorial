@@ -9,12 +9,41 @@ output: ioslides_presentation
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## R Markdown
 
-What is it?
+##Plan for today
+1. Quick overview of how Rmarkdown works (Sean)
+2. Syntax and code demo (Daniella)
+3. Writing papers in Rmarkdown (Sean)
+4. Collaborating with Rmarkdown and GitHub (Both)
+5. Custom formatting w/ LaTeX templates (Sean - if time)
+
+
+## R Markdown - What is it?
+
+- Unified data science framework - combines code, its results, and your commentary
 
 ![Allison Horst](Markdown_band.png){width=500px, height=500px}
 
+##Advantages 
+
+**Literate Programming**: *Blend text and code to create outputs that are readible from top to bottom*
+
+![Allison Horst](Markdown_band.png){width=500px, height=500px}
+
+
+
+##Advantages
+1. Communicating your science
+2. Collaborating with other scientists (including your future self!)
+3. Environment to **do** data science
+4. Reproducible
+5. Many different output formats (e.g., PDF, MS Word, Slide show etc.)
+
+
+
+##How it all works
+
+![Allison Horst](Markdown_band.png){width=500px, height=500px}
 
 ## Tools we are using
 - R
@@ -22,7 +51,7 @@ What is it?
 - YAML
 - Knitr
 - Pandoc
-- LaTex
+- LaTeX
 
 
 ## Tools we are using
@@ -31,10 +60,10 @@ What is it?
 - **YAML**
 - Knitr
 - Pandoc
-- LaTex
+- LaTeX
 
 
-## Rmarkdown
+## Rmarkdown vs. Markdown
 
 **Markdown (.md extension)**
 
@@ -45,9 +74,8 @@ What is it?
 
 **Rmarkdown (.Rmd extension)**
 
-- R package (rmarkdown)
 
-- Extension of markdown syntax that enables embedded R code to be executed
+- R package (rmarkdown) that enables embedded R code to be executed in .md files
 
 - Converts .Rmd files into many formats (**rmarkdown::render**)
 
@@ -59,8 +87,8 @@ What is it?
 ##Knitr
 
 - R package (knitr)
-- Takes plain text doc with embedded code, executes the code, and "knits" results back into document
-- The "engine" that integrates R code into different outputs (e.g., reproducible reports)
+- Takes plain text file with embedded code, executes the code, and "knits" results back into document
+- The "engine" that integrates R code into different outputs (**knitr::knit**)
 
 
 ##Pandoc
@@ -78,11 +106,17 @@ What is it?
 
 (4) YAML metadata passes options to guide building process and output format
 
-##LaTex
+![](Rmd_process.png){width=600px, height=100px}
+
+##LaTeX
 
 - Standalone software for document preparation (TeX typesetting language)
 
 - Part of pipeline for translating .Rmd files into PDF format
+
+
+##Structure
+![](Rmd_structure.png){width=700px, height=500px}
 
 
 ##Writing in Rmarkdown
@@ -132,4 +166,7 @@ Less time cursing at MS Word
 ![](Pooh_LaTex.png){width=450px, height=500px}
 
 
+##General Advice
+
+**Knit early and often!!**
 
