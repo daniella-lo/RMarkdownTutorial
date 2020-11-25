@@ -96,7 +96,7 @@ df <- read.csv("salpref_smoltdata_20102020.csv")
 df <- df %>%
   dplyr::select(-X) %>% # remove unneccessary columns
                         # note, if you get an error with a pipe in dplyr, sometimes its due to conflict with plyr, so you have to either unload plyr or specify that the package you want is dplyr
-  rename(fish.id = Fish_ID,
+  dplyr::rename(fish.id = Fish_ID,
          experiment = Experiment,# rename works as NEW = OLD
          outmigr.wk = OutMigration_Week, 
          outmigr.day = Days_Since_Outmigr, 
@@ -161,6 +161,7 @@ ggsave("yourfirstfig.jpeg",plot=f1,units="in",height=6,width=8,dpi=800) # you ca
 If you want to include a graphic or figure that is not generated from R code, like one you made in Inkscape after Colin's rad workshop, you may use the knitr::include_graphics() function. Here's a cute goat GIF because Wednesday.  
 
 ![](https://media.giphy.com/media/TGakgWdFTT1Sg/giphy.gif)
+
 
 ## Tables
 For more table formatting options, chech out  <https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html>  
