@@ -6,10 +6,7 @@ output:
   html_document: 
                  # for word doc output, change this to word_document
                  # for pdf output, change this to pdf_output
-    bibliography: packages.bib
     toc: true # table of contents
-    toc_float: false #floats at the side of the html
-    toc_collapsed: false
     toc_depth: 6 # can have up to 6 levels in the table of contents
     number_sections: true # numbers the sections
     fig_width: 7 # set journal/preference standard figure dimensions
@@ -18,9 +15,9 @@ output:
 theme: lumen # a nice crisp theme
 ---
 
-This is an R Markdown document (`.Rmd`). Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown I recommend *Bookdown* by @bookdown2016 <https://bookdown.org/yihui/rmarkdown/markdown-syntax.html>.  
+This is an R Markdown document (`.Rmd`). Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown I recommend **Bookdown** by *Yihui Xie*  <https://bookdown.org/yihui/rmarkdown/markdown-syntax.html>.
 
-Above this text there is some code surrounded by "---" which sets up the document. There, you can set defaults and formatting for the document output. I've set it to html, but it can be changed to pdf_document, word_document
+Above this text there is some code surrounded by "---" which sets up the document. There, you can set defaults and formatting for the document output. The two requirements you need are a title and an output type, all the rest are formatting options. 
 
 Text (here) is written in Pandoc's Markdown syntax. Here you can document information about your datasets, references, notes, ideas, explanations, heck, even write the body of your manuscript! It can all be formatted nicely in-line. Here are some helpful formatting tips from bookdown:  
 
@@ -61,23 +58,14 @@ Ordered list items start with numbers (you can also nest lists within lists), e.
 ####### Its headings all the way down!!!
 
 ## Equations
-Inline LaTeX equations can be written in a pair of dollar signs using the LaTeX syntax:  
+If you have any equations you need to remember for your methods, you can write them as text here between dollar signs:  
 
 $f(k) = {n \choose k} p^{k} (1-p)^{n-k}$  
 
-You can also use math environments inside dollar signs like this cool matrix:  
-
-$$\begin{array}{ccc}
-x_{11} & x_{12} & x_{13}\\
-x_{21} & x_{22} & x_{23}
-\end{array}$$  
-
-
 # Chunks
-Chunks are where the magic happens. Ie. where you import data, mess with it, code, calculate, make figures, etc. You can insert an R code chunk either using the RStudio toolbar (the Insert button) or the keyboard shortcut Ctrl + Alt + I (Cmd + Option + I on macOS).  
+Chunks are where the magic happens. Ie. where you import data, mess with it, code, calculate, make figures, etc. By default, the code chunk will appear in the html document (echo = TRUE), but you can hide code chunks that your collaborators don't need to see (ie. messy background code). The best part about chunks is that you can run a chunk all at once instead of line by line by pressing the green arrow. If your code is broken, the chunk wont run and you have to fix it! Tough but fair. Below is a simple chunk with a single command within:  
+
 ```{r setup, echo = FALSE}
-# sets default to echo= TRUE, which will show your code chunks in the html output
-# as a bit of irony, putting echo = FALSE in the curly brackets above will hide this code chunk from the html output. Do this for any coding that you don't need to show your audience. 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -87,13 +75,12 @@ knitr::opts_chunk$set(echo = TRUE)
 rm(list = ls())
 ```
 
-```{r load packages, message = FALSE,  echo = FALSE, warning = FALSE}
+```{r load packages, warning = FALSE, messages = FALSE}
 library(dplyr) # or the tidyverse package
 library(colorspace) # i love this package for vision-diverse friendly colour palletes
 library(ggplot2)
 library(ggpubr) #for multiplots
 library(gtsummary) # for summary tables
-library(knitr) # for rmarkdown
 library(kableExtra) # for basic tables
 
 # warning = FALSE hides the warnings from the html output
@@ -119,18 +106,20 @@ df <- df %>%
          explore = Active, # exploratory = 1, non-exploratory = 0
          pref = Preferred_Chamber_p0.5) # salinity of preferred chamber
 
-attach(df)
-summary(df)
+# change variables to factor
 df <- df %>% 
   mutate_at(vars(outmigr.wk, explore), funs(factor))
 
 # order salinity preference
 df$pref <- factor(df$pref, levels = c("Freshwater", "Brackish", "Saltwater"))
+
+#show summary of dataframe
+summary(df)
 ```
 
 ## Figures
 
-```{r Figures, fig.cap= "Figure 1. Fish Condition by Outmigration Week ", message = FALSE, include = TRUE, out.width= '50%',  fig.show ='hold', warning = FALSE}
+```{r single fig, fig.cap= "Figure 1. Fish Condition by Outmigration Week", out.width= '50%', fig.align='center'}
 # fig.cap adds a figure caption just to the html file after you knit it
 # out.width scales your figures, if you are doing a multipanel just to present in the html, make it 50% so that its 2 columns. This wont save the figure, just show it. To save a multiplot, use the code below
 
@@ -166,70 +155,18 @@ ggsave("yourfirstfig.jpeg",plot=f1,units="in",height=6,width=8,dpi=800) # you ca
 
 # no trend as aggregate data, but we have included both exploratory and non exploratory fish, so lets filter the dataset by that
 
-df_nonexpl <- df %>%
-  filter(explore == '0')
-
-f2 <- ggplot(df_nonexpl, aes(outmigr.wk, k, fill = pref))+
-  geom_point(position=position_dodge(width=0.75), aes(group=pref))+
-  geom_boxplot()+
-  scale_fill_discrete_sequential(palette = "BluGrn") +
-  labs(title = "Non-exploratory Fish",
-       y = expression(bold(Fulton~K~"("~g~"*"~mm^{"-3"}~")")), 
-       x = "\n Outmigration Week") + # the 
-  scale_x_discrete(labels = c('River','Estuary','Ocean')) +
-  theme_classic()+
-  theme(title = element_text(size=14, face = "bold"), 
-        axis.text=element_text(size=12, colour="black"),
-        legend.position = "none",
-        axis.title=element_text(size=14, face = "bold"), 
-        plot.margin=unit(margins,"line"), 
-        strip.text=element_text(hjust=0), 
-        panel.background = element_rect(fill = "transparent"), 
-        plot.background = element_rect(fill = "transparent", color = NA), 
-        axis.text.x = element_text()) 
-print(f2)
-
-df_expl <- df %>%
-  filter(explore == '1')
-
-f3 <- ggplot(df_expl, aes(outmigr.wk, k, fill = pref))+
-  geom_point(position=position_dodge(width=0.75), aes(group=pref))+
-  geom_boxplot()+
-  scale_fill_discrete_sequential(palette = "BluGrn") +
-  labs(title = "Exploratory Fish",
-       y = expression(bold(Fulton~K~"("~g~"*"~mm^{"-3"}~")")), 
-       x = "\n Outmigration Week") + # the 
-  scale_x_discrete(labels = c('River','Estuary','Ocean')) +
-  theme_classic()+
- theme(title = element_text(size=14, face = "bold"), 
-        axis.text=element_text(size=12, colour="black"),
-        legend.position = "none",
-        axis.title=element_text(size=14, face = "bold"), 
-        plot.margin=unit(margins,"line"), 
-        strip.text=element_text(hjust=0), 
-        panel.background = element_rect(fill = "transparent"), 
-        plot.background = element_rect(fill = "transparent", color = NA), 
-        axis.text.x = element_text()) 
-print(f3)
-
-#for a multiplot, I use ggarrange, and then save that new figure. I always have to play around with font sizes to make sure they dont overlap. 
-f4 <- ggarrange(f2, f3, f1, ncol=3,nrow=1) #specify number of rows and colums
-
-ggsave("multiplot.jpeg",plot=f4,units="in",height=4,width=13,dpi=800)
 ```
 
-If you want to include a graphic or figure that is not generated from R code, like one you made in Inkscape after Colin's rad workshop, you may use the knitr::include_graphics() function. Just add in the path or url to your image, and remove the hashtag comment in the chunk below. Here's a cute goat gif in the meantime...  
+
+If you want to include a graphic or figure that is not generated from R code, like one you made in Inkscape after Colin's rad workshop, you may use the knitr::include_graphics() function. Here's a cute goat GIF because Wednesday.  
 
 ![](https://media.giphy.com/media/TGakgWdFTT1Sg/giphy.gif)
-```{r, echo = FALSE, message = FALSE, include = TRUE, out.width='25%', fig.align='center', fig.cap='...'}
-#knitr::include_graphics('images/hex-rmarkdown.png')
-```
 
 ## Tables
 For more table formatting options, chech out  <https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html>  
 
 ### Basic
-```{r Tables, message = FALSE, include = TRUE, results = 'asis'}
+```{r Tables, include = TRUE, results = 'asis'}
 #make sure results = 'asis' is there
 
 # use dplyr to group by week, spread by fish behaviour (exploratory or not), and count the number of active fish in each week
@@ -249,8 +186,7 @@ kable(tab1) %>%
 
 ```
 
-### Summary
-```{r Summary Stats Tables, message = FALSE, include = TRUE, results = 'asis'}
+```{r Summary Stats Tables, echo = FALSE, include = FALSE, results = 'asis'}
 #make sure results = 'asis' is there
 
 # select the variables from your dataset that you want to include in your table
@@ -273,10 +209,4 @@ tab2 %>% # your dataset
   as_kable()  %>% 
   kable_styling(bootstrap_options = c("striped", "bordered","hover", "condensed", "responsive"), position = "left", full_width = FALSE, fixed_thead = TRUE) # just some nice formatting, you can play around with these
 
-```
-
-# Citing R packages
-Here's an easy chunk that will create a bib file of all the packages you have loaded for this R script. This is super useful for your methods when you're running analysis and making figures. This will create a new file "packages.bib" that you can import to your citation manager (Mendeley) or use as a bibliography directly in markdown when writing a manuscript.  
-```{r packages}
-knitr::write_bib(c(.packages(), "bookdown"), "packages.bib")
 ```
