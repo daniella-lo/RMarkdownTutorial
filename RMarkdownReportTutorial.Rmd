@@ -34,7 +34,9 @@ You can also write maths with LaTeX directly. This is handy if you want equation
 P(A \mid B) = \frac{P(B \mid A) \, P(A)}{P(B)}
 \end{equation}
 
-
+#Figures
+This figure is pretty lit 
+![Figure 1.](yourfirstfig.jpeg)
 
 #References
 <div id="refs"></div>
