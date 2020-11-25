@@ -11,7 +11,7 @@ output:
   pdf_document:
     fig_caption: yes
     keep_tex: yes
-    latex_engine: xelatex
+    latex_engine: xelatex ##LateX engine
 bibliography: References.bib
 ---
 
