@@ -25,6 +25,7 @@
 \usepackage[unicode=true]{hyperref}
 \hypersetup{
             pdftitle={Salmon smolts: answers to all remaining questions},
+            pdfauthor={Daniella and Sean},
             pdfborder={0 0 0},
             breaklinks=true}
 \urlstyle{same}  % don't use monospace font for urls
@@ -69,8 +70,8 @@
 \setlength{\parskip}{1em}
 
 \title{Salmon smolts: answers to all remaining questions}
-\author{}
-\date{\vspace{-2.5em}}
+\author{Daniella and Sean}
+\date{}
 
 \begin{document}
 \maketitle
@@ -80,6 +81,59 @@
 Salmon smolts are really cool, obviously. However, we also lack a full
 understanding of why they do what they do. Here we fill in that
 knowledge gap with some data, which we manipulate, analyze, and display
-in R markdown.
+in R markdown. Buckle up\ldots{}
+
+\section{Introduction}\label{introduction}
+
+We will start out broad and reference some important contributions to
+the literature. For example, you can reference a paper at the end of a
+sentence like this (Naman et al. 2014). Alternatively, you may want to
+refer to a specific study in the text. For example, LoScerbo et al.
+(2020) is Daniella's recent paper - not about salmon, but still looks
+really cool. To cite multiple references, separate them with a
+semi-colon (Bailey and Moore 2020; LoScerbo et al. 2020).
+
+\section{Methods}\label{methods}
+
+If you are doing anything mathy, writing in Rmarkdown is great. You can
+either use markdown or LaTeX syntax for equations. Simple math is easy
+in markdown - just stick it between two dollar signs. You can mix LaTeX
+syntax in as well for more complexity.
+
+\(E = MC^2\)
+
+You can also write maths with LaTeX directly. This is handy if you want
+equations to be auto-numbered. Below is Bayes' theorem as LaTeX.
+
+\begin{equation}
+P(A \mid B) = \frac{P(B \mid A) \, P(A)}{P(B)}
+\end{equation}
+
+\section{Figures}\label{figures}
+
+This figure is pretty lit \includegraphics{yourfirstfig.jpeg}
+
+\section{References}\label{references}
+
+\hypertarget{refs}{}
+\hypertarget{ref-Bailey2020}{}
+Bailey, C. J., and Jonathon W. Moore. 2020. ``Resource pulses increase
+the diversity of successful competitors in a multi-species stream fish
+assemblage.'' \emph{Ecosphere} 11 (September).
+doi:\href{https://doi.org/10.1002/ecs2.3211}{10.1002/ecs2.3211}.
+
+\hypertarget{ref-LoScerbo2020}{}
+LoScerbo, Daniella, Maxwell J. Farrell, Julie Arrowsmith, Julia
+Mlynarek, and Jean Philippe Lessard. 2020. ``Phylogenetically conserved
+host traits and local abiotic conditions jointly drive the geography of
+parasite intensity.'' \emph{Functional Ecology}, no. September: 1--11.
+doi:\href{https://doi.org/10.1111/1365-2435.13698}{10.1111/1365-2435.13698}.
+
+\hypertarget{ref-Naman2014}{}
+Naman, S M, P M Kiffney, G R Pess, T W Buehrens, and T R Bennett. 2014.
+``Abundance and body condition of sculpin (Cottus spp.) in a small
+forest stream following recolonization by juvenile coho salmon.''
+\emph{River Research and Applications} 30: 360--71.
+doi:\href{https://doi.org/10.1002/rra}{10.1002/rra}.
 
 \end{document}
